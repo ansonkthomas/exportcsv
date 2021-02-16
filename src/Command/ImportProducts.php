@@ -90,9 +90,8 @@ class ImportProducts extends Command
 
                             if ($isValidProduct) {
                                 //The product is valid. Save the product
-                                $productCodes[] = $product['product_code'];
                                 $setDiscontinuedDate = ($product['discontinued'] == 'yes') ? true : false;
-                                
+
                                 //Check for mode of run
                                 if (!$testMode) {
                                     if ($productData) {
@@ -102,6 +101,7 @@ class ImportProducts extends Command
                                         //Insert record in DB
                                         $productData = new ProductData();
                                         $productData = $this->saveProductData($entityManager, $productData, $product, $setDiscontinuedDate);
+                                        $productList[] = $productData;
                                     }
                                 }
                             }
